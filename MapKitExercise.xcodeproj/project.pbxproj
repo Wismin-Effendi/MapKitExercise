@@ -12,6 +12,7 @@
 		372A01791F07EC6B00AE9480 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 372A01771F07EC6B00AE9480 /* Main.storyboard */; };
 		372A017B1F07EC6B00AE9480 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 372A017A1F07EC6B00AE9480 /* Assets.xcassets */; };
 		372A017E1F07EC6B00AE9480 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 372A017C1F07EC6B00AE9480 /* LaunchScreen.storyboard */; };
+		372A01861F07F2BF00AE9480 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372A01851F07F2BF00AE9480 /* LocationSearchTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		372A017A1F07EC6B00AE9480 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		372A017D1F07EC6B00AE9480 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		372A017F1F07EC6B00AE9480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		372A01851F07F2BF00AE9480 /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				372A01731F07EC6A00AE9480 /* AppDelegate.swift */,
 				372A01751F07EC6A00AE9480 /* ViewController.swift */,
+				372A01851F07F2BF00AE9480 /* LocationSearchTable.swift */,
 				372A01771F07EC6B00AE9480 /* Main.storyboard */,
 				372A017A1F07EC6B00AE9480 /* Assets.xcassets */,
 				372A017C1F07EC6B00AE9480 /* LaunchScreen.storyboard */,
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				372A01861F07F2BF00AE9480 /* LocationSearchTable.swift in Sources */,
 				372A01761F07EC6A00AE9480 /* ViewController.swift in Sources */,
 				372A01741F07EC6A00AE9480 /* AppDelegate.swift in Sources */,
 			);
