@@ -11,8 +11,10 @@ import MapKit
 
 class LocationSearchTable: UITableViewController {
     
-    var machingItems: [MKMapItem] = []
-    var mapView: MKMapView?  
+    var matchingItems: [MKMapItem] = []
+    var mapView: MKMapView?
+    
+    var handleMapSearchDelegate: HandleMapSearch? 
 }
 
 extension LocationSearchTable: UISearchResultsUpdating {
@@ -27,7 +29,7 @@ extension LocationSearchTable: UISearchResultsUpdating {
         search.start {[weak self] (response, _) in
             guard let response = response else { return }
             
-            self?.machingItems = response.mapItems
+            self?.matchingItems = response.mapItems
             self?.tableView.reloadData()
         }
     }
@@ -61,14 +63,23 @@ extension LocationSearchTable: UISearchResultsUpdating {
 extension LocationSearchTable {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return machingItems.count
+        return matchingItems.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath)
-        let selectedItem = machingItems[indexPath.row].placemark
+        let selectedItem = matchingItems[indexPath.row].placemark
         cell.textLabel?.text = selectedItem.name
         cell.detailTextLabel?.text = parseAddress(selectedItem)
         return cell
+    }
+}
+
+// MARK: UITableViewDelegate
+extension LocationSearchTable {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = matchingItems[indexPath.row].placemark
+        handleMapSearchDelegate?.dropPinZoomIn(selectedItem)
+        dismiss(animated: true, completion: nil)
     }
 }

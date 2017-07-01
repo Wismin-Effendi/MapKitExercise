@@ -9,6 +9,10 @@
 import UIKit
 import MapKit
 
+protocol HandleMapSearch {
+    func dropPinZoomIn(_ placemark: MKPlacemark)
+}
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
@@ -16,6 +20,8 @@ class ViewController: UIViewController {
     let locationManager = CLLocationManager()
     
     var resultSearchController: UISearchController?
+    
+    var selectedPin: MKPlacemark? 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +43,7 @@ class ViewController: UIViewController {
         definesPresentationContext = true
         
         locationSearchTable.mapView = mapView
+        locationSearchTable.handleMapSearchDelegate = self
     }
 
 }
@@ -50,7 +57,7 @@ extension ViewController : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            let span = MKCoordinateSpanMake(0.05, 0.05)
+            let span = MKCoordinateSpanMake(0.15, 0.15)
             let region = MKCoordinateRegion(center: location.coordinate, span: span)
             mapView.setRegion(region, animated: true)
         }
@@ -60,3 +67,25 @@ extension ViewController : CLLocationManagerDelegate {
         print("error:: \(error)")
     }
 }
+
+
+extension ViewController: HandleMapSearch {
+    
+    func dropPinZoomIn(_ placemark: MKPlacemark) {
+        // cache the pin
+        selectedPin = placemark
+        // clear existing pins 
+        mapView.removeAnnotations(mapView.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        annotation.title = placemark.name
+        if let city = placemark.locality, let state = placemark.administrativeArea {
+            annotation.subtitle = "\(city) \(state)"
+        }
+        mapView.addAnnotation(annotation)
+        let span = MKCoordinateSpanMake(0.20, 0.20)
+        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        mapView.setRegion(region, animated: true)
+    }
+}
+
