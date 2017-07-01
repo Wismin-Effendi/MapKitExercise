@@ -34,7 +34,9 @@ class ViewController: UIViewController {
         navigationItem.titleView = resultSearchController?.searchBar
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
-        definesPresentationContext = true 
+        definesPresentationContext = true
+        
+        locationSearchTable.mapView = mapView
     }
 
 }
